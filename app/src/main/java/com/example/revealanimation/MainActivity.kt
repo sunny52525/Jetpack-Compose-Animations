@@ -34,11 +34,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
-
                     Reveal()
-
-
                 }
             }
         }
@@ -53,16 +49,13 @@ private fun Reveal() {
 
     var enabled by remember { mutableStateOf(false) }
 
+    val numberOfCard by remember { mutableStateOf(5) }
+
     val degree by animateFloatAsState(
         if (enabled) 300f else 0f,
         tween(durationMillis = 500, easing = LinearEasing)
     )
-    val card1 by animateFloatAsState(if (enabled) 100f else 0f, tween(durationMillis = 500))
-    val card2 by animateFloatAsState(if (enabled) 200f else 0f, tween(durationMillis = 500))
-    val card3 by animateFloatAsState(if (enabled) 300f else 00f, tween(durationMillis = 500))
-    val card4 by animateFloatAsState(if (enabled) 400f else 00f, tween(durationMillis = 500))
-    val card5 by animateFloatAsState(if (enabled) 500f else 00f, tween(durationMillis = 500))
-
+    val position by animateFloatAsState(if (enabled) 100f else 0f, tween(durationMillis = 500))
 
 
     Box(
@@ -72,22 +65,11 @@ private fun Reveal() {
         contentAlignment = Alignment.TopEnd
     ) {
 
-
-        RoundCard(
-            modifier = Modifier.offset(y = card5.dp),
-        )
-        RoundCard(
-            modifier = Modifier.offset(y = card4.dp),
-        )
-        RoundCard(
-            modifier = Modifier.offset(y = card3.dp),
-        )
-        RoundCard(
-            modifier = Modifier.offset(y = card2.dp),
-        )
-        RoundCard(
-            modifier = Modifier.offset(y = card1.dp),
-        )
+        for (i in numberOfCard downTo 1) {
+            RoundCard(
+                modifier = Modifier.offset(y = (i * position).dp),
+            )
+        }
 
         Card(
             onClick = {
@@ -137,4 +119,5 @@ private fun getRandomColor(): Color {
     val blue = random.nextInt(256)
     return Color(red, green, blue)
 }
+
 
