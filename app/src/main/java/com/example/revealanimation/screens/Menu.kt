@@ -1,6 +1,7 @@
 package com.example.revealanimation.screens
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -16,9 +17,15 @@ fun Home(onClick: (Routes) -> Unit) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Button(onClick = { onClick(Routes.Reveal) }) {
-            Text(text = "Reveal")
-        }
+       Column {
+           Button(onClick = { onClick(Routes.Reveal) }) {
+               Text(text = "Reveal")
+           }
+           Button(onClick = { onClick(Routes.SlideZoom) }) {
+               Text(text = "SlideZoom")
+           }
+
+       }
     }
 
 }
