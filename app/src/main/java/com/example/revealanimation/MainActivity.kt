@@ -47,15 +47,21 @@ class MainActivity : ComponentActivity() {
 @Preview
 private fun Reveal() {
 
-    var enabled by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
 
     val numberOfCard by remember { mutableStateOf(5) }
 
     val degree by animateFloatAsState(
-        if (enabled) 300f else 0f,
-        tween(durationMillis = 500, easing = LinearEasing)
+        targetValue = if (expanded) 300f else 0f,
+        animationSpec = tween(
+            durationMillis = 500,
+            easing = LinearEasing
+        )
     )
-    val position by animateFloatAsState(if (enabled) 100f else 0f, tween(durationMillis = 500))
+    val position by animateFloatAsState(
+        targetValue = if (expanded) 100f else 0f,
+        animationSpec = tween(durationMillis = 500)
+    )
 
 
     Box(
@@ -65,7 +71,7 @@ private fun Reveal() {
         contentAlignment = Alignment.TopEnd
     ) {
 
-        for (i in numberOfCard downTo 1) {
+        (numberOfCard downTo 1).forEach { i ->
             RoundCard(
                 modifier = Modifier.offset(y = (i * position).dp),
             )
@@ -73,7 +79,7 @@ private fun Reveal() {
 
         Card(
             onClick = {
-                enabled = !enabled
+                expanded = expanded.not()
             },
             shape = CircleShape,
             modifier = Modifier.size(100.dp)
