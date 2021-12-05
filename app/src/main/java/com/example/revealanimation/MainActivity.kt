@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -60,7 +61,7 @@ private fun Reveal() {
         )
     )
     val position by animateFloatAsState(
-        targetValue = if (expanded) 100f else 0f,
+        targetValue = if (expanded) 50f else 0f,
         animationSpec = tween(durationMillis = 500)
     )
 
@@ -83,13 +84,13 @@ private fun Reveal() {
                 expanded = expanded.not()
             },
             shape = CircleShape,
-            modifier = Modifier.size(100.dp)
+            modifier = Modifier.size(60.dp)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_settings_gear),
                 contentDescription = null,
                 Modifier
-                    .padding(18.dp)
+                    .padding(8.dp)
                     .rotate(degree)
             )
         }
@@ -101,21 +102,30 @@ private fun Reveal() {
 @Preview
 @Composable
 fun RoundCard(modifier: Modifier = Modifier) {
-    Card(
-        shape = CircleShape,
-        modifier = modifier.size(100.dp),
-        backgroundColor = Color.Black,
+
+    Column(
+        modifier = modifier
+            .height(60.dp)
+            .width(50.dp)
+            .padding(vertical = 10.dp)
+    ) {
+        Card(
+            modifier = Modifier.size(40.dp),
+            shape = CircleShape,
+            backgroundColor = Color.Black,
 
         ) {
-        Icon(
-            imageVector = Icons.Filled.Favorite,
-            contentDescription = null,
-            tint = getRandomColor(),
-            modifier = Modifier
-                .size(20.dp)
-                .padding(18.dp)
-        )
+            Icon(
+                imageVector = Icons.Filled.Favorite,
+                contentDescription = null,
+                tint = getRandomColor(),
+                modifier = Modifier
+                    .size(20.dp)
+                    .padding(8.dp)
+            )
+        }
     }
+
 }
 
 
