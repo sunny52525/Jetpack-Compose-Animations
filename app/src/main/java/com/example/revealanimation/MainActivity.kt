@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -55,7 +56,7 @@ private fun Reveal() {
         targetValue = if (expanded) 300f else 0f,
         animationSpec = tween(
             durationMillis = 500,
-            easing = LinearEasing
+            easing = LinearOutSlowInEasing
         )
     )
     val position by animateFloatAsState(
