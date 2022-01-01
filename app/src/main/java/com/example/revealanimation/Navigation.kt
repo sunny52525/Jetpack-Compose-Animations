@@ -10,9 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.revealanimation.screens.Home
-import com.example.revealanimation.screens.Reveal
-import com.example.revealanimation.screens.TelegramStickerScroll
+import com.example.revealanimation.screens.*
 
 @Composable
 fun Navigation() {
@@ -31,11 +29,19 @@ fun Navigation() {
         }
         composable(Routes.SlideZoom.route) {
             Box(
-                modifier = Modifier.fillMaxSize().background(Color.Black),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black),
                 contentAlignment = Alignment.BottomStart
             ) {
                 TelegramStickerScroll()
             }
+        }
+        composable(Routes.RatingBar.route){
+            RatingBar()
+        }
+        composable(Routes.TelegramVoice.route){
+            TelegramVoiceRecord()
         }
     })
 }

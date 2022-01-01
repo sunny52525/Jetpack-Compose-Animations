@@ -17,15 +17,23 @@ fun Home(onClick: (Routes) -> Unit) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-       Column {
-           Button(onClick = { onClick(Routes.Reveal) }) {
-               Text(text = "Reveal")
-           }
-           Button(onClick = { onClick(Routes.SlideZoom) }) {
-               Text(text = "SlideZoom")
-           }
+        Column {
+            Button(onClick = { onClick(Routes.Reveal) }) {
+                Text(text = "Reveal")
+            }
+            Button(onClick = { onClick(Routes.SlideZoom) }) {
+                Text(text = "SlideZoom")
+            }
+            Button(onClick = { onClick(Routes.SlideZoom) }) {
+                Text(text = Routes.RatingBar.route)
+            }
+            Button(onClick = {
+                onClick(Routes.TelegramVoice)
+            }) {
+                Text(text = Routes.TelegramVoice.route)
+            }
 
-       }
+        }
     }
 
 }
