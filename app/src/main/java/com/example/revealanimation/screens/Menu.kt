@@ -24,7 +24,7 @@ fun Home(onClick: (Routes) -> Unit) {
             Button(onClick = { onClick(Routes.SlideZoom) }) {
                 Text(text = "SlideZoom")
             }
-            Button(onClick = { onClick(Routes.SlideZoom) }) {
+            Button(onClick = { onClick(Routes.RatingBar) }) {
                 Text(text = Routes.RatingBar.route)
             }
             Button(onClick = {
